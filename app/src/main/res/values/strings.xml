@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Daily Readings</string>
+    <string name="title_activity_bible">Bible</string>
+
+    <!--THEMES-->
+    <string-array name="themes">
+        <item>Dark</item>
+        <item>Light</item>
+    </string-array>
+    <string-array name="themes_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <!--TRANSLATIONS-->
+    <string-array name="translations">
+        <item>KJV</item>
+        <item>ESV</item>
+        <item>NET</item>
+    </string-array>
+    <string-array name="translation_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!--FONTS-->
+    <string-array name="font_options">
+        <item>Default</item>
+        <item>Droid Sans</item>
+        <item>Droid Serif</item>
+        <item>Libre Baskerville</item>
+        <item>Roboto Slab</item>
+    </string-array>
+    <string-array name="font_values">
+        <item/>
+        <item>DroidSans.ttf</item>
+        <item>DroidSerif.ttf</item>
+        <item>LibreBaskerville-Regular.ttf</item>
+        <item>RobotoSlab-Regular.ttf</item>
+    </string-array>
+
+</resources>

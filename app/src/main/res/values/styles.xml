@@ -1,0 +1,63 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="DailyReadings.Dark" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+        <item name="colorTheme">@color/colorPrimary</item>
+        <item name="colorBackground">@color/colorDark</item>
+        <item name="colorBackgroundHighlight">@color/colorPrimary</item>
+        <item name="colorBackgroundLight">@color/colorLight</item>
+        <item name="colorBackgroundOverlay">@color/colorOverlayTransparent</item>
+        <item name="colorHighlightText">@color/colorLight</item>
+        <item name="colorBodyText">@color/colorLight</item>
+        <item name="colorButtonTextLight">@color/colorLightSecondary</item>
+        <item name="colorButtonTextDark">@color/colorDark</item>
+        <item name="colorReadingText">@color/colorDark</item>
+        <item name="colorBackgroundWidget">@color/colorDarkTransparent</item>
+        <item name="colorWidgetText">@color/colorPrimary</item>
+        <item name="colorButtonLight">@color/colorDarkSecondary</item>
+        <item name="colorButtonDark">@color/colorDark</item>
+        <item name="colorButtonRead">@color/colorDark</item>
+        <item name="colorButtonReadText">@color/colorLightSecondary</item>
+        <item name="colorButtonBack">@color/colorDarkSecondary</item>
+        <item name="colorButtonBackText">@color/colorLightSecondary</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
+    </style>
+
+    <style name="DailyReadings.Light" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+        <item name="colorTheme">@color/colorPrimary</item>
+        <item name="colorBackground">@color/colorLightBackground</item>
+        <item name="colorBackgroundHighlight">@color/colorPrimary</item>
+        <item name="colorBackgroundLight">@color/colorLight</item>
+        <item name="colorBackgroundOverlay">@color/colorOverlayTransparent</item>
+        <item name="colorHighlightText">@color/colorLight</item>
+        <item name="colorBodyText">@color/colorDark</item>
+        <item name="colorButtonTextLight">@color/colorLightSecondary</item>
+        <item name="colorButtonTextDark">@color/colorDark</item>
+        <item name="colorReadingText">@color/colorDark</item>
+        <item name="colorBackgroundWidget">@color/colorDarkTransparent</item>
+        <item name="colorWidgetText">@color/colorPrimary</item>
+        <item name="colorButtonLight">@color/colorLightSecondary</item>
+        <item name="colorButtonDark">@color/colorDark</item>
+        <item name="colorButtonRead">@color/colorDark</item>
+        <item name="colorButtonReadText">@color/colorLightSecondary</item>
+        <item name="colorButtonBack">@color/colorLightSecondary</item>
+        <item name="colorButtonBackText">@color/colorDark</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
+    </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <!--Make progress bar match theme colour-->
+    <style name="ProgressBarOverlay">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

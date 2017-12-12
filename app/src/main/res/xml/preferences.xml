@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <PreferenceCategory
+        android:title="General">
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/themes"
+            android:entryValues="@array/themes_values"
+            android:key="pref_theme"
+            android:title="Theme" />
+
+        <!--
+        <com.liftyourheads.dailyreadings.SeekBarPreference
+            android:title="Theme Colour"
+            android:key="colour" />
+            -->
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Readings" >
+
+        <ListPreference
+            android:entries="@array/translations"
+            android:entryValues="@array/translations"
+            android:defaultValue="ESV"
+            android:key="pref_translation"
+            android:title="Translation" />
+
+        <SwitchPreference
+            android:key="pref_paragraphs"
+            android:title="Enable paragraphs" />
+
+        <!--<com.liftyourheads.dailyreadings.FontPreference
+            android:key="pref_font"
+            android:title="Font"
+            android:defaultValue="0"
+            app:entries="@array/font_options"
+            app:entryValues="@array/font_values" /> -->
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

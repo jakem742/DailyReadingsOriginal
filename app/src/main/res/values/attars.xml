@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorTheme" format="reference|color" />
+    <attr name="colorBackgroundHighlight" format="reference|color" />
+    <attr name="colorBackground" format="reference|color" />
+    <attr name="colorBackgroundOverlay" format="reference|color" />
+    <attr name="colorBackgroundLight" format="reference|color" />
+    <attr name="colorBackgroundWidget" format="reference|color" />
+    <attr name="colorButtonRead" format="reference|color" />
+    <attr name="colorButtonReadText" format="reference|color" />
+    <attr name="colorButtonBack" format="reference|color" />
+    <attr name="colorButtonBackText" format="reference|color" />
+    <attr name="colorButtonDark" format="reference|color" />
+    <attr name="colorButtonLight" format="reference|color" />
+    <attr name="colorBodyText" format="reference|color" />
+    <attr name="colorHighlightText" format="reference|color" />
+    <attr name="colorButtonTextLight" format="reference|color" />
+    <attr name="colorButtonTextDark" format="reference|color" />
+    <attr name="colorReadingText" format="reference|color" />
+    <attr name="colorWidgetText" format="reference|color" />
+
+    <declare-styleable name="SpinnerPreference">
+        <attr name="entries" />
+        <attr name="entryValues" />
+    </declare-styleable>
+
+</resources>

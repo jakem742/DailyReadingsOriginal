@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.liftyourheads.dailyreadings.BibleMainActivity">
+
+    <LinearLayout
+        android:id="@+id/readingsLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/readingsHeaderLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="closeListView"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/dateTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:onClick="toggleListView"
+                    android:text="Date"
+                    android:textColor="?colorTheme"
+                    android:textSize="32dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:onClick="goToSettings"
+                    app:srcCompat="@android:drawable/ic_menu_preferences" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/firstReadingLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/firstReadingTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:onClick="updateComments"
+                    android:tag="1"
+                    android:text="First Reading"
+                    android:textColor="?colorReadingText"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/firstReadingButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="?colorButtonRead"
+                    android:onClick="goToBibleReadings"
+                    android:tag="1"
+                    android:text="Read"
+                    android:textColor="?colorButtonReadText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secondReadingLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/secondReadingTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:onClick="updateComments"
+                    android:tag="2"
+                    android:text="Second Reading"
+                    android:textColor="?colorReadingText"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/secondReadingButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="?colorButtonRead"
+                    android:onClick="goToBibleReadings"
+                    android:tag="2"
+                    android:text="Read"
+                    android:textColor="?colorButtonReadText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/thirdReadingLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/thirdReadingTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:onClick="updateComments"
+                    android:tag="3"
+                    android:text="Third Reading"
+                    android:textColor="?colorReadingText"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/thirdReadingButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="?colorButtonRead"
+                    android:onClick="goToBibleReadings"
+                    android:tag="3"
+                    android:text="Read"
+                    android:textColor="?colorButtonReadText" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/mainDivider"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?colorTheme">
+
+        </FrameLayout>
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/commentsConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?colorBackground"
+            android:clickable="false">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/commentsSwipeRefresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/commentsViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/readingsHeaderLayout" />
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+            <TextView
+                android:id="@+id/commentsConnectErrorText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:padding="24dp"
+                android:text="Unable to connect to server.\nCheck your internet connection and swipe down to refresh."
+                android:textColor="?colorBodyText"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/commentsSwipeRefresh"
+                app:layout_constraintEnd_toEndOf="@+id/commentsSwipeRefresh"
+                app:layout_constraintLeft_toLeftOf="@+id/commentsSwipeRefresh"
+                app:layout_constraintRight_toRightOf="@+id/commentsSwipeRefresh"
+                app:layout_constraintStart_toStartOf="@+id/commentsSwipeRefresh"
+                app:layout_constraintTop_toTopOf="@+id/commentsSwipeRefresh" />
+
+            <ProgressBar
+                android:id="@+id/getCommentsProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:theme="@style/ProgressBarOverlay"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/commentsSwipeRefresh"
+                app:layout_constraintEnd_toEndOf="@+id/commentsSwipeRefresh"
+                app:layout_constraintStart_toStartOf="@+id/commentsSwipeRefresh"
+                app:layout_constraintTop_toTopOf="@+id/commentsSwipeRefresh" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+    <!-- <LinearLayout
+        android:id="@+id/readingsListLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:weightSum="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout> -->
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/menuBackgroundConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?colorBackgroundOverlay"
+        android:onClick="closeListView"
+        android:visibility="invisible">
+
+    </android.support.constraint.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/dateFrameLayout"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="#EEEEEE"
+        android:translationX="-150dp">
+
+        <ListView
+            android:id="@+id/dateListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:scrollbarStyle="outsideInset">
+            <!--android:layout_weight="2"-->
+
+        </ListView>
+    </FrameLayout>
+
+    <!--<DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/updateDateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="getDateFromDatePicker"
+        android:text="Get Readings"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker" /> -->
+
+</android.support.constraint.ConstraintLayout>

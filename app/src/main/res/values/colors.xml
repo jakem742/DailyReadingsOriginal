@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ABC988</color>
+    <color name="colorDark">#212121</color>
+    <color name="colorLight">#FFFAFAFA</color>
+    <color name="colorDarkTransparent">#DC212121</color>
+    <color name="colorDarkSecondary">#353535</color>
+    <color name="colorLightBackground">#F5F5F5</color>
+    <color name="colorLightSecondary">#E0E0E0</color>
+    <color name="colorOverlayTransparent">#E5212121</color>
+
+    <!--
+    Read button text colour: #e0e0e0
+    Sage (Default): #ABC988
+    Moonstone Blue: #75B9BE
+    ** NICE ** Pastel Blue: #A8CCC9
+    -->
+</resources>
