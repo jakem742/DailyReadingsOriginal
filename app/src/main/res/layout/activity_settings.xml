@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.liftyourheads.dailyreadings.SettingsFragment"
+        android:name="com.liftyourheads.dailyreadings.fragment_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

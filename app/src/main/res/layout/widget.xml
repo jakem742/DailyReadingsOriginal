@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/widget_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?colorBackgroundWidget"
     android:paddingBottom="4dp"
     android:paddingEnd="8dp"
     android:paddingLeft="8dp"
@@ -26,24 +26,24 @@
             android:id="@+id/reading1TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="?colorWidgetText"
-            android:textSize="18sp" />
+            android:text="Reading 1"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/reading2TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="?colorWidgetText"
-            android:textSize="18sp" />
+            android:text="Reading 2"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/reading3TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="?colorWidgetText"
-            android:textSize="18sp" />
+            android:text="Reading 3"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
     </LinearLayout>
 </FrameLayout>

@@ -23,5 +23,8 @@
         <attr name="entries" />
         <attr name="entryValues" />
     </declare-styleable>
+    <attr name="contentTextSize" format="dimension|reference" />
+    <attr name="titleTextSize" format="dimension|reference" />
+    <attr name="subtitleTextSize" format="dimension|reference" />
 
 </resources>

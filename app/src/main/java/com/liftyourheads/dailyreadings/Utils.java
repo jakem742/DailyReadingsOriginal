@@ -4,7 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.content.res.TypedArray;
+import android.support.annotation.AttrRes;
+import android.support.annotation.StyleRes;
+import android.support.v4.content.IntentCompat;
+import android.support.v7.preference.PreferenceManager;
+//import android.preference.PreferenceManager;
 
 public class Utils {
     private static int sTheme;
@@ -31,13 +36,40 @@ public class Utils {
         switch (theme) {
             default:
             case THEME_DARK:
-                activity.setTheme(R.style.DailyReadings_Dark);
+                activity.setTheme(R.style.AppTheme_Dark);
                 break;
             case THEME_LIGHT:
-                activity.setTheme(R.style.DailyReadings_Light);
+                activity.setTheme(R.style.AppTheme);
                 break;
         }
     }
 
+    public static float getDimension(Context context, @StyleRes int styleResId, @AttrRes int attr) {
+        TypedArray a = context.getTheme().obtainStyledAttributes(styleResId, new int[]{attr});
+        float size = a.getDimension(0, 0);
+        a.recycle();
+        return size;
+    }
+
+    public static class Theme {
+
+        public static @StyleRes int resolveTextSize(String choice) {
+            switch (Integer.parseInt(choice)) {
+                case -1:
+                    return R.style.AppTextSize_XSmall;
+                case 0:
+                default:
+                    return R.style.AppTextSize;
+                case 1:
+                    return R.style.AppTextSize_Medium;
+                case 2:
+                    return R.style.AppTextSize_Large;
+                case 3:
+                    return R.style.AppTextSize_XLarge;
+            }
+        }
+
+
+    }
 
 }

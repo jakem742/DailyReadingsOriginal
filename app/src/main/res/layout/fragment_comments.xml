@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?colorBackground"
     android:clickable="false"
-    tools:context="com.liftyourheads.dailyreadings.BibleMainActivity">
+    tools:context="com.liftyourheads.dailyreadings.activity_date">
 
         <ListView
             android:id="@+id/readingNotesListView"

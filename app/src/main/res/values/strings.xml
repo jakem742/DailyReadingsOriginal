@@ -24,7 +24,7 @@
         <item>2</item>
     </string-array>
 
-    <!--FONTS-->
+    <!-- Font -->
     <string-array name="font_options">
         <item>Default</item>
         <item>Droid Sans</item>
@@ -33,11 +33,49 @@
         <item>Roboto Slab</item>
     </string-array>
     <string-array name="font_values">
-        <item/>
+        <item />
         <item>DroidSans.ttf</item>
         <item>DroidSerif.ttf</item>
         <item>LibreBaskerville-Regular.ttf</item>
         <item>RobotoSlab-Regular.ttf</item>
     </string-array>
+
+    <!-- Font size -->
+    <string-array name="text_size_options">
+        <item>@string/text_size_extra_small</item>
+        <item>@string/text_size_small</item>
+        <item>@string/text_size_medium</item>
+        <item>@string/text_size_large</item>
+        <item>@string/text_size_extra_large</item>
+    </string-array>
+    <string-array name="pref_text_size_values">
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string name="pref_text_size">pref_text_size</string>
+    <string name="pref_text_size_title">Text size</string>
+    <string name="pref_font">pref_font</string>
+    <string name="pref_font_title">Font</string>
+    <string name="pref_translation">pref_translation</string>
+    <string name="pref_translation_title">Translation</string>
+
+
+    <string name="text_size_extra_small">Extra small</string>
+    <string name="text_size_small">Small</string>
+    <string name="text_size_medium">Medium</string>
+    <string name="text_size_large">Large</string>
+    <string name="text_size_extra_large">Extra large</string>
+
+
+    <string name="readings_widget_name">Daily Readings</string>
+    <string name="commandments_widget_name">Commandments Of Christ</string>
+    <string name="title_activity_bible_places">Bible Places</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

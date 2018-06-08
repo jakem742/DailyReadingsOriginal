@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="DailyReadings.Dark" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme.Dark" parent="Theme.AppCompat.DayNight.NoActionBar">
 
         <item name="colorTheme">@color/colorPrimary</item>
         <item name="colorBackground">@color/colorDark</item>
@@ -24,9 +24,14 @@
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 
+        <!-- custom themed attributes -->
+        <item name="titleTextSize">@dimen/text_size_medium</item>
+        <item name="subtitleTextSize">@dimen/text_size_small</item>
+        <item name="contentTextSize">@dimen/text_size_small</item>
+
     </style>
 
-    <style name="DailyReadings.Light" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
 
         <item name="colorTheme">@color/colorPrimary</item>
         <item name="colorBackground">@color/colorLightBackground</item>
@@ -49,6 +54,12 @@
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 
+
+        <!-- custom themed attributes -->
+        <item name="titleTextSize">@dimen/text_size_medium</item>
+        <item name="subtitleTextSize">@dimen/text_size_small</item>
+        <item name="contentTextSize">@dimen/text_size_small</item>
+
     </style>
 
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -59,5 +70,44 @@
     </style>
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <!-- ========== -->
+    <!-- Text sizes -->
+    <!-- ========== -->
+    <style name="AppTextSize">
+        <item name="titleTextSize">@dimen/text_size_medium</item>
+        <item name="subtitleTextSize">@dimen/text_size_small</item>
+        <item name="contentTextSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="AppTextSize.XSmall">
+        <item name="titleTextSize">16sp</item>
+        <item name="subtitleTextSize">12sp</item>
+        <item name="contentTextSize">12sp</item>
+    </style>
+
+    <style name="AppTextSize.Medium">
+        <item name="titleTextSize">20sp</item>
+        <item name="subtitleTextSize">16sp</item>
+        <item name="contentTextSize">16sp</item>
+    </style>
+
+    <style name="AppTextSize.Large">
+        <item name="titleTextSize">22sp</item>
+        <item name="subtitleTextSize">18sp</item>
+        <item name="contentTextSize">18sp</item>
+    </style>
+
+    <style name="AppTextSize.XLarge">
+        <item name="titleTextSize">24sp</item>
+        <item name="subtitleTextSize">20sp</item>
+        <item name="contentTextSize">20sp</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
 </resources>
