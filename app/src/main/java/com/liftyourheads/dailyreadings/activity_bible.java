@@ -441,7 +441,7 @@ public class activity_bible extends AppCompatActivity {
     }
 
     //// AUDIO VARIABLES ////
-
+    /*
     private static final int STATE_PAUSED = 0;
     private static final int STATE_PLAYING = 1;
 
@@ -540,7 +540,7 @@ public class activity_bible extends AppCompatActivity {
         });
 
 
-    }
+    }*/
 
 
 
