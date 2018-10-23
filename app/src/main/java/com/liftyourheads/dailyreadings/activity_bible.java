@@ -202,8 +202,9 @@ public class activity_bible extends AppCompatActivity {
 
         Intent myIntent = new Intent(this, activity_bible_places.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        myIntent.putExtra("fromActivity","readings");
+        myIntent.putExtra("fromActivity","Readings");
         myIntent.putExtra("activeReading", bibleContentViewPager.getCurrentItem());
+        Log.i("Changing Activity","Opening map view for reading " + bibleContentViewPager.getCurrentItem());
         Bundle options =
                 ActivityOptionsCompat.makeCustomAnimation(this, R.anim.slidein_left, R.anim.slideout_right).toBundle();
 
@@ -214,7 +215,9 @@ public class activity_bible extends AppCompatActivity {
 
     }
 
+    /*
     public void initializeMediaPlayer() {
+
 
         //// LOAD AUDIO FOR READING ////
 
@@ -292,11 +295,11 @@ public class activity_bible extends AppCompatActivity {
     };
 
 
-    /**
+    *
      * preparing mediaplayer will take sometime to buffer the content so prepare it inside the background thread and starting it on UI thread.
      *
      * @author piyush
-     */
+
 
     class Player extends AsyncTask<String, Void, Boolean> {
         private ProgressDialog progress;
@@ -390,7 +393,7 @@ public class activity_bible extends AppCompatActivity {
 
         }
 
-    }
+    }*/
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 3;

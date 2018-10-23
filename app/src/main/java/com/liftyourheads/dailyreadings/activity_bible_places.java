@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,20 +25,19 @@ public class activity_bible_places extends AppCompatActivity {
 
         TextView bibleTitleTextView = findViewById(R.id.bibleTitleTextView);
 
-
-
         //Get initial reading
-        readingNum = getIntent().getIntExtra("readingNum", 1);
+        readingNum = getIntent().getIntExtra("activeReading", 0);
 
+        Log.i("Reading Num",Integer.toString(readingNum));
 
-        bibleTitleTextView.setText(readings[readingNum-1].getFullName());
+        bibleTitleTextView.setText(readings[readingNum].getFullName());
     }
 
     public void returnToMain(View view) {
 
         Intent myIntent = new Intent(this, activity_date.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        myIntent.putExtra("fromActivity","readings");
+        myIntent.putExtra("fromActivity","maps");
         myIntent.putExtra("activeReading", readingNum);
         Bundle options =
                 ActivityOptionsCompat.makeCustomAnimation(this, R.anim.slidein_left, R.anim.slideout_right).toBundle();
