@@ -28,7 +28,7 @@ public class activity_bible_places extends AppCompatActivity {
         //Get initial reading
         readingNum = getIntent().getIntExtra("activeReading", 0);
 
-        Log.i("Reading Num",Integer.toString(readingNum));
+        Log.i("Reading Number",Integer.toString(readingNum));
 
         bibleTitleTextView.setText(readings[readingNum].getFullName());
     }
