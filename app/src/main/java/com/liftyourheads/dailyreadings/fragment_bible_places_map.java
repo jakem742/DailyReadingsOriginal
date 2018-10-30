@@ -1,82 +1,67 @@
 package com.liftyourheads.dailyreadings;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.google.android.maps.MapView;
 
+import com.google.android.gms.maps.GoogleMap;
 
-public class fragment_bible_places_map extends Fragment {
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+
+public class fragment_bible_places_map extends Fragment   {
 
     MapView mMapView;
-    private GoogleMap googleMap;
+    GoogleMap map;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_bible_places_map, container, false);
-        //return inflater.inflate(R.layout.fragment_bible_places_map, container, false);
-
-        mMapView = (MapView) rootView.findViewById(R.id.mapView);
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_bible_places_map, parent, false);
+        mMapView = view.findViewById(R.id.bibleMapView);
         mMapView.onCreate(savedInstanceState);
-
-        mMapView.onResume(); // needed to get the map to display immediately
-
-        try {
-            MapsInitializer.initialize(getActivity().getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        mMapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap mMap) {
-                googleMap = mMap;
-
-                // For showing a move to my location button
-                googleMap.setMyLocationEnabled(true);
-
-                // For dropping a marker at a point on the Map
-                LatLng sydney = new LatLng(-34, 151);
-                googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
-
-                // For zooming automatically to the location of the marker
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-            }
-        });
-
-        return rootView;
+        return view;
     }
-
 
     @Override
-    public void onResume() {
-        super.onResume();
-        mMapView.onResume();
-    }
+    public void
 
     @Override
     public void onPause() {
+        if (mMapView != null) {
+            mMapView.onPause();
+        }
         super.onPause();
-        mMapView.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        if (mMapView != null) {
+            mMapView.onResume();
+        }
+        super.onResume();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mMapView.onDestroy();
-    }
+        if (mMapView != null) {
+            try {
+                mMapView.onDestroy();
+            } catch (NullPointerException e) {
+                Log.e("Error", "Error while attempting MapView.onDestroy(), ignoring exception", e);
+            }
+        }    }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        mMapView.onLowMemory();
+        if (mMapView != null) {
+            mMapView.onLowMemory();
+        }
     }
+
 }

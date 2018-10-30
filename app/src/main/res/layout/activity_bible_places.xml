@@ -31,7 +31,6 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="Reading #"
@@ -42,20 +41,23 @@
 
         </LinearLayout>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/bibleContentViewPager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <fragment
-        android:id="@+id/fragmentBibleMap"
-        android:name="com.liftyourheads.dailyreadings.fragment_bible_places_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <fragment
+                android:id="@+id/fragmentBibleMap"
+                android:name="com.liftyourheads.dailyreadings.fragment_bible_places_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_bible_places_map" />
+
+        </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
 

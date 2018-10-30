@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity
             android:name=".activity_date"
             android:configChanges="orientation|screenSize">
@@ -24,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity_bible"
             android:label="@string/title_activity_bible"
@@ -40,6 +43,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/dailyreadings_widget_info" />
         </receiver>
+
         <receiver
             android:name=".CommandmentsWidgetProvider"
             android:label="@string/commandments_widget_name">
@@ -54,7 +58,7 @@
 
         <activity android:name=".activity_settings" />
 
-        <service android:name=".MediaPlayerService">
+        <!--<service android:name=".MediaPlayerService">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
                 <action android:name="android.media.AUDIO_BECOMING_NOISY" />
@@ -67,12 +71,24 @@
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
                 <action android:name="android.media.AUDIO_BECOMING_NOISY" />
             </intent-filter>
-        </receiver>
+        </receiver> -->
 
         <activity
             android:name=".activity_bible_places"
             android:label="@string/title_activity_bible_places"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
     </application>
 
 </manifest>

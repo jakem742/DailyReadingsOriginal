@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
+
 import static com.liftyourheads.dailyreadings.activity_date.readings;
 
 public class activity_bible_places extends AppCompatActivity {
@@ -48,5 +50,6 @@ public class activity_bible_places extends AppCompatActivity {
         else startActivity(myIntent);
 
     }
+
 
 }
