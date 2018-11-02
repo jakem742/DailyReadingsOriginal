@@ -56,6 +56,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutionException;
@@ -100,6 +101,7 @@ public class activity_date extends AppCompatActivity {
     int maxNotes;
     String[][][] commentPost; //Separate note from poster info
     static final String[] BIBLE = {"Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra", "Nehemiah", "Esther", "Job", "Psalms", "Proverbs", "Ecclesiastes", "Song of Solomon", "Isaiah", "Jeremiah", "Lamentations", "Ezekiel", "Daniel", "Hosea", "Joel", "Amos", "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi", "Matthew", "Mark", "Luke", "John", "Acts", "Romans", "1 Corinthians", "2 Corinthians", "Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians", "1 Timothy", "2 Timothy", "Titus", "Philemon", "Hebrews", "James", "1 Peter", "2 Peter", "1 John", "2 John", "3 John", "Jude", "Revelation"};
+    static final String[] BIBLE_PLACES = {"Gen", "Ex", "Lev", "Num", "Deut", "Josh", "Judg", "Ruth", "1 Sam", "2 Sam", "1 Kgs", "2 Kgs", "1 Chr", "2 Chr", "Ezra", "Neh", "Est", "Job", "Ps", "Pro", "Eccl", "Sng", "Isa", "Jer", "Lam", "Ezek", "Dan", "Hos", "Joel", "Amos", "Obad", "Jonah", "Mic", "Nahum", "Hab", "Zeph", "Hag", "Zech", "Mal", "Matt", "Mark", "Luke", "John", "Acts", "Rom", "1 Cor", "2 Cor", "Gal", "Eph", "Phil", "Col", "1 Thes", "2 Thes", "1 Tim", "2 Tim", "Titus", "Phm", "Heb", "James", "1 Pet", "2 Pet", "1 Jn", "2 Jn", "3 Jn", "Jude", "Rev"};
     static final String[] TRANSLATIONS = {"KJV", "ESV", "NET"};
 
     public static Reading[] readings;
@@ -592,6 +594,68 @@ public class activity_date extends AppCompatActivity {
             }
         }
 
+        public List<String[]> getPlaces() {
+
+            // Get list of places by chapter from DB and
+            SQLiteDatabase readingsDB = getApplicationContext().openOrCreateDatabase("BiblePlaces.db", 0, null);
+
+            //Establishing variables
+            Integer[] bookPosition = this.getBookIndex();
+            Integer[] bookChapters = this.getChapters();
+            Cursor readingCursor,placesCursor;
+            List<String[]> places = new ArrayList<>();
+
+            //Iterating through each chapter in reading
+            for (int i = 0; i < bookChapters.length; i++ ) {
+
+                String readingBook = BIBLE_PLACES[bookPosition[0]];
+                Integer readingChapter = bookChapters[i];
+
+                // Find places in DB
+                readingCursor = readingsDB.rawQuery("SELECT * FROM bible_places_CHAPTER WHERE book = '" + readingBook + "\' AND chapter = " + readingChapter.toString(), null);
+
+                Log.i("Map data Found", "Found map data for " + readingBook + " chapter " + readingChapter.toString());
+
+                readingCursor.moveToFirst();
+
+                int placesColumn = readingCursor.getColumnIndex("places");
+
+                do {
+
+                    String placesList = readingCursor.getString(placesColumn++);
+                    String[] placesArray = placesList.split(",");
+
+                    for (String placeName : placesArray) {
+
+                        placesCursor = readingsDB.rawQuery("SELECT * FROM bible_places_NAME WHERE name = '" + placeName + "\'", null);
+                        int latColumn = placesCursor.getColumnIndex("Lat");
+
+                        do {
+                            String placeLat = readingCursor.getString(latColumn++);
+                            String placeLong = readingCursor.getString(latColumn++);
+
+                            String[] placeData = new String[]{placeName,placeLat,placeLong};
+
+                            places.add(placeData);
+
+                        } while (placesCursor.moveToNext());
+
+                        placesCursor.close();
+
+                    }
+
+                } while (readingCursor.moveToNext());
+
+                readingCursor.close();
+
+                System.out.println("Place Data: " + places.toString());
+            }
+
+            readingsDB.close();
+            return places;
+
+        }
+
         private void setChapters(String chapters) {
             String[] chaptersSplit;
 
@@ -680,6 +744,12 @@ public class activity_date extends AppCompatActivity {
                 }
 
             }
+
+        }
+
+        public Integer[] getBookIndex() {
+
+            return this.bookPosition;
 
         }
 
