@@ -29,6 +29,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.liftyourheads.dailyreadings.activity_date.readings;
 
@@ -48,6 +51,7 @@ public class activity_bible extends AppCompatActivity {
     //String audioKJVURLTemplate = "http://server.firefighters.org/kjv/projects/firefighters/kjv_web/01_Gen/01Gen001.mp3";
     //String audioNETURLTemplate = "http://feeds.bible.org/netaudio/51-Colossians-03.mp3";
 
+    public List<Integer> mapOpened = new ArrayList<>(3);
     TextView bibleTitleTextView;
     ViewPager bibleContentViewPager;
     FragmentPagerAdapter adapterViewPager;
@@ -200,18 +204,33 @@ public class activity_bible extends AppCompatActivity {
 
     public void goToMap(View view) {
 
-        Intent myIntent = new Intent(this, activity_bible_places.class);
-        myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        myIntent.putExtra("fromActivity","Readings");
-        myIntent.putExtra("activeReading", bibleContentViewPager.getCurrentItem());
-        Log.i("Changing Activity","Opening map view for reading " + bibleContentViewPager.getCurrentItem());
-        Bundle options =
-                ActivityOptionsCompat.makeCustomAnimation(this, R.anim.slidein_left, R.anim.slideout_right).toBundle();
+        Integer currentView = bibleContentViewPager.getCurrentItem();
 
-        overridePendingTransition(R.anim.slidein_left, R.anim.slideout_right);
+        if ( !mapOpened.contains(currentView) ) {
 
-        if (Build.VERSION.SDK_INT > 15) startActivityIfNeeded(myIntent,0, options);
-        else startActivity(myIntent);
+            Log.i("Bible Map", Arrays.toString(mapOpened.toArray()));
+            Log.i("Bible Map", "First time opening map for " + readings[currentView].getFullName());
+            mapOpened.add(currentView); //Add to list of opened pages
+
+            Intent myIntent = new Intent(this, activity_bible_places.class);
+            myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT).addFlags(myIntent.FLAG_ACTIVITY_NO_HISTORY);
+            myIntent.putExtra("fromActivity", "Readings");
+            myIntent.putExtra("activeReading", currentView);
+
+            Bundle options =
+                    ActivityOptionsCompat.makeCustomAnimation(this, R.anim.slidein_left, R.anim.slideout_right).toBundle();
+
+            overridePendingTransition(R.anim.slidein_left, R.anim.slideout_right);
+
+            if (Build.VERSION.SDK_INT > 15) startActivityIfNeeded(myIntent, 0, options);
+            else startActivity(myIntent);
+
+        } else {
+
+            Log.i("Bible Map", "Reopening map for " + readings[currentView].getFullName());
+
+        }
+
 
     }
 

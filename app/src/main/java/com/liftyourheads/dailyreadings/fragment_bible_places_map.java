@@ -9,13 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 import static com.liftyourheads.dailyreadings.activity_date.readings;
 
@@ -24,7 +29,7 @@ public class fragment_bible_places_map extends Fragment implements OnMapReadyCal
 
     MapView mMapView;
     GoogleMap map;
-    Marker mPerth;
+
     static final LatLng PERTH = new LatLng(-31.952854, 115.857342);
     int readingNum = activity_bible_places.readingNum;
 
@@ -80,14 +85,48 @@ public class fragment_bible_places_map extends Fragment implements OnMapReadyCal
 
         map = googleMap;
 
-        readings[readingNum].getPlaces();
+
+        List<String[]> places = readings[readingNum].getPlaces();
+        int tagNumber = 0;
+        Marker[] markers = new Marker[places.size()];
 
         // Add some markers to the map, and add a data object to each marker.
-        mPerth = map.addMarker(new MarkerOptions()
-                .position(PERTH)
-                .title("Perth"));
-        mPerth.setTag(0);
 
+        for( String[] place : places) {
+
+            Double latitude = Double.parseDouble(place[1].replaceAll("[^\\d.]", ""));
+            Double longitude = Double.parseDouble(place[2].replaceAll("[^\\d.]", ""));
+            LatLng mLatLng = new LatLng(latitude, longitude);
+
+            markers[tagNumber] = map.addMarker(new MarkerOptions()
+                    .position(mLatLng)
+                    .title(place[0]));
+
+            markers[tagNumber].setTag(tagNumber++);
+        }
+
+        //Zoom to fit markers
+
+        CameraUpdate cu;
+
+        if (markers.length < 2) {
+
+            cu = CameraUpdateFactory.newLatLngZoom(markers[0].getPosition(), 6F);
+
+        } else {
+
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            for (Marker marker : markers) {
+                builder.include(marker.getPosition());
+            }
+            LatLngBounds bounds = builder.build();
+
+            int padding = 200; // offset from edges of the map in pixels
+            cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+        }
+
+        googleMap.animateCamera(cu);
     }
 
 

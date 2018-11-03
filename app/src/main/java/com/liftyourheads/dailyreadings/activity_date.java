@@ -192,6 +192,7 @@ public class activity_date extends AppCompatActivity {
         //Ensure DB are in correct location
 
         checkDatabase("DailyReadings.db");
+        checkDatabase("BiblePlaces.db");
         for (String translation : TRANSLATIONS) {
             checkDatabase(translation + ".db");
         }
@@ -537,6 +538,7 @@ public class activity_date extends AppCompatActivity {
         private String[] audioURL;
         private Integer[] audioStreamStatus;
         private Integer[] versesPartialChapter = new Integer[2];
+        private List<String[]> places;
 
 
         private void setNumber(int value) {
@@ -558,6 +560,7 @@ public class activity_date extends AppCompatActivity {
             setFullName();
             generateAudioURL();
             updateVerses();
+            processPlaces();
 
         }
 
@@ -594,7 +597,7 @@ public class activity_date extends AppCompatActivity {
             }
         }
 
-        public List<String[]> getPlaces() {
+        public void processPlaces() {
 
             // Get list of places by chapter from DB and
             SQLiteDatabase readingsDB = getApplicationContext().openOrCreateDatabase("BiblePlaces.db", 0, null);
@@ -603,7 +606,7 @@ public class activity_date extends AppCompatActivity {
             Integer[] bookPosition = this.getBookIndex();
             Integer[] bookChapters = this.getChapters();
             Cursor readingCursor,placesCursor;
-            List<String[]> places = new ArrayList<>();
+            places = new ArrayList<>();
 
             //Iterating through each chapter in reading
             for (int i = 0; i < bookChapters.length; i++ ) {
@@ -616,44 +619,57 @@ public class activity_date extends AppCompatActivity {
 
                 Log.i("Map data Found", "Found map data for " + readingBook + " chapter " + readingChapter.toString());
 
-                readingCursor.moveToFirst();
 
-                int placesColumn = readingCursor.getColumnIndex("places");
 
-                do {
+                if (readingCursor.moveToFirst()) {
 
-                    String placesList = readingCursor.getString(placesColumn++);
-                    String[] placesArray = placesList.split(",");
+                    int placesColumn = readingCursor.getColumnIndex("places");
 
-                    for (String placeName : placesArray) {
+                    do {
 
-                        placesCursor = readingsDB.rawQuery("SELECT * FROM bible_places_NAME WHERE name = '" + placeName + "\'", null);
-                        int latColumn = placesCursor.getColumnIndex("Lat");
+                        String placesList = readingCursor.getString(placesColumn);
+                        String[] placesArray = placesList.split(", ");
 
-                        do {
-                            String placeLat = readingCursor.getString(latColumn++);
-                            String placeLong = readingCursor.getString(latColumn++);
+                        for (String placeName : placesArray) {
 
-                            String[] placeData = new String[]{placeName,placeLat,placeLong};
+                            placesCursor = readingsDB.rawQuery("SELECT * FROM bible_places_NAME WHERE Name = '" + placeName + "\'", null);
+                            Integer latColumn = placesCursor.getColumnIndex("Lat");
 
-                            places.add(placeData);
+                            if (placesCursor.moveToFirst()) {
+                                do {
+                                    String placeLat = placesCursor.getString(latColumn);
+                                    String placeLong = placesCursor.getString(latColumn + 1);
 
-                        } while (placesCursor.moveToNext());
+                                    String[] placeData = new String[]{placeName, placeLat, placeLong};
 
-                        placesCursor.close();
+                                    Log.i("Place Info", Arrays.toString(placeData));
+                                    places.add(placeData);
 
-                    }
+                                } while (placesCursor.moveToNext());
 
-                } while (readingCursor.moveToNext());
+                            } else {
+                                Log.i("Place Info", "Couldn't find '" + placeName + "' in the database!");
+                            }
+
+                            placesCursor.close();
+
+                        }
+
+                    } while (readingCursor.moveToNext());
+                } else {
+                    Log.i("Place Info",readingBook + " " + readingChapter + " has no recorded places");
+                }
 
                 readingCursor.close();
 
-                System.out.println("Place Data: " + places.toString());
+                System.out.println("Place Data: " + Arrays.toString(places.toArray()));
             }
 
             readingsDB.close();
-            return places;
+        }
 
+        public List<String[]> getPlaces() {
+            return places;
         }
 
         private void setChapters(String chapters) {
@@ -758,7 +774,7 @@ public class activity_date extends AppCompatActivity {
             if (!this.singleChapterBook && !this.multipleBooks) { //Include chapter number if book contains more than one!
 
                 this.fullName.append(this.bookName[0]).append(" ").append(chapters[0]);
-                System.out.println("Reading " + number + " contains only one book with multiple chapters!");
+                System.out.println("Reading " + number + " contains only one book!");
 
             } else if (this.multipleBooks) {
 

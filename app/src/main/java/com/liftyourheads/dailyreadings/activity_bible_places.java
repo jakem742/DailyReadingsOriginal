@@ -18,7 +18,7 @@ public class activity_bible_places extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bible_places);
+        setContentView(R.layout.activity_bible_places_OLD);
 
         TextView bibleTitleTextView = findViewById(R.id.bibleTitleTextView);
 
@@ -32,7 +32,7 @@ public class activity_bible_places extends AppCompatActivity {
 
     public void returnToMain(View view) {
 
-        Intent myIntent = new Intent(this, activity_date.class);
+        Intent myIntent = new Intent(this, activity_bible.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         myIntent.putExtra("fromActivity","maps");
         myIntent.putExtra("activeReading", readingNum);
@@ -43,6 +43,7 @@ public class activity_bible_places extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT > 15) startActivityIfNeeded(myIntent,0, options);
         else startActivity(myIntent);
+        finish();
 
     }
 
