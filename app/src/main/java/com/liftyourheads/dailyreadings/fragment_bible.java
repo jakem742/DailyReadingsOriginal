@@ -34,7 +34,7 @@ public class fragment_bible extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        readingNum = getArguments().getInt("readingNum") - 1;
+        readingNum = getArguments().getInt("readingNum");
     }
 
     @Override

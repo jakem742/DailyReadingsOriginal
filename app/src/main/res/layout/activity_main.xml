@@ -73,7 +73,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:onClick="updateComments"
-                    android:tag="1"
+                    android:tag="0"
                     android:text="First Reading"
                     android:textColor="?colorReadingText"
                     android:textSize="18sp" />
@@ -89,7 +89,7 @@
                     android:layout_weight="1"
                     android:background="?colorButtonRead"
                     android:onClick="goToBibleReadings"
-                    android:tag="1"
+                    android:tag="0"
                     android:text="Read"
                     android:textColor="?colorButtonReadText" />
             </LinearLayout>
@@ -111,7 +111,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:onClick="updateComments"
-                    android:tag="2"
+                    android:tag="1"
                     android:text="Second Reading"
                     android:textColor="?colorReadingText"
                     android:textSize="18sp" />
@@ -126,7 +126,7 @@
                     android:layout_weight="1"
                     android:background="?colorButtonRead"
                     android:onClick="goToBibleReadings"
-                    android:tag="2"
+                    android:tag="1"
                     android:text="Read"
                     android:textColor="?colorButtonReadText" />
             </LinearLayout>
@@ -149,7 +149,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:onClick="updateComments"
-                    android:tag="3"
+                    android:tag="2"
                     android:text="Third Reading"
                     android:textColor="?colorReadingText"
                     android:textSize="18sp" />
@@ -165,7 +165,7 @@
                     android:layout_weight="1"
                     android:background="?colorButtonRead"
                     android:onClick="goToBibleReadings"
-                    android:tag="3"
+                    android:tag="2"
                     android:text="Read"
                     android:textColor="?colorButtonReadText" />
             </LinearLayout>

@@ -264,7 +264,7 @@ public class activity_date extends AppCompatActivity {
     public void goToBibleReadings(View view) {
 
         Intent myIntent = new Intent(this, activity_bible.class);
-        myIntent.putExtra("readingNum", Integer.parseInt(view.getTag().toString()));
+        myIntent.putExtra("readingNum", Integer.parseInt((view.getTag()).toString()));
         startActivity(myIntent);
         overridePendingTransition(R.anim.slidein_right, R.anim.slideout_left);
 
@@ -2167,7 +2167,7 @@ public class activity_date extends AppCompatActivity {
             //Update comments to match active reading
             Integer activeReading = newIntent.getIntExtra("activeReading", 0);
             commentsViewPager.setCurrentItem(activeReading);
-            Log.i("Comments", "Updating comments to match Reading " + Integer.toString((activeReading + 1)));
+            Log.i("Comments", "Updating comments to match Reading " + Integer.toString((activeReading)));
 
         }
 

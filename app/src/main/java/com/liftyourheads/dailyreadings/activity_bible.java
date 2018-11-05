@@ -51,7 +51,6 @@ public class activity_bible extends AppCompatActivity {
     //String audioKJVURLTemplate = "http://server.firefighters.org/kjv/projects/firefighters/kjv_web/01_Gen/01Gen001.mp3";
     //String audioNETURLTemplate = "http://feeds.bible.org/netaudio/51-Colossians-03.mp3";
 
-    public List<Integer> mapOpened = new ArrayList<>(3);
     TextView bibleTitleTextView;
     ViewPager bibleContentViewPager;
     FragmentPagerAdapter adapterViewPager;
@@ -77,7 +76,7 @@ public class activity_bible extends AppCompatActivity {
         readingNum = getIntent().getIntExtra("readingNum", 1);
 
         //Initialise the header
-        updateHeader((readingNum-1));
+        updateHeader((readingNum));
 
         //updateUI(readingNum);
         //initializeMediaPlayer();
@@ -89,7 +88,7 @@ public class activity_bible extends AppCompatActivity {
         bibleContentViewPager.setAdapter(adapterViewPager);
 
         //Initialise at selected page
-        bibleContentViewPager.setCurrentItem((readingNum-1));
+        bibleContentViewPager.setCurrentItem((readingNum));
 
         bibleContentViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -206,30 +205,21 @@ public class activity_bible extends AppCompatActivity {
 
         Integer currentView = bibleContentViewPager.getCurrentItem();
 
-        if ( !mapOpened.contains(currentView) ) {
+        Intent myIntent = new Intent(this, activity_bible_places.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        myIntent.putExtra("fromActivity", "Readings");
+        myIntent.putExtra("readingNum", currentView);
 
-            Log.i("Bible Map", Arrays.toString(mapOpened.toArray()));
-            Log.i("Bible Map", "First time opening map for " + readings[currentView].getFullName());
-            mapOpened.add(currentView); //Add to list of opened pages
+        Bundle options =
+                ActivityOptionsCompat.makeCustomAnimation(this, R.anim.slidein_left, R.anim.slideout_right).toBundle();
 
-            Intent myIntent = new Intent(this, activity_bible_places.class);
-            myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT).addFlags(myIntent.FLAG_ACTIVITY_NO_HISTORY);
-            myIntent.putExtra("fromActivity", "Readings");
-            myIntent.putExtra("activeReading", currentView);
+        overridePendingTransition(R.anim.slidein_left, R.anim.slideout_right);
 
-            Bundle options =
-                    ActivityOptionsCompat.makeCustomAnimation(this, R.anim.slidein_left, R.anim.slideout_right).toBundle();
+        if (Build.VERSION.SDK_INT > 15)
+            startActivityIfNeeded(myIntent, 0, options);
+        else
+            startActivity(myIntent);
 
-            overridePendingTransition(R.anim.slidein_left, R.anim.slideout_right);
-
-            if (Build.VERSION.SDK_INT > 15) startActivityIfNeeded(myIntent, 0, options);
-            else startActivity(myIntent);
-
-        } else {
-
-            Log.i("Bible Map", "Reopening map for " + readings[currentView].getFullName());
-
-        }
 
 
     }
@@ -432,11 +422,11 @@ public class activity_bible extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return fragment_bible.newInstance(1);
+                    return fragment_bible.newInstance(0);
                 case 1:
-                    return fragment_bible.newInstance(2);
+                    return fragment_bible.newInstance(1);
                 case 2:
-                    return fragment_bible.newInstance(3);
+                    return fragment_bible.newInstance(2);
                 default:
                     return null;
             }

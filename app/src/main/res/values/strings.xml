@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Daily Readings</string>
     <string name="title_activity_bible">Bible</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiamFrZW1hZGRlbiIsImEiOiJjam8zYzI0c2wwdm9iM3ZwaDQyN2JndGprIn0.CojJfMt7cFy-48RECaaXWw</string>
 
     <!--THEMES-->
     <string-array name="themes">
