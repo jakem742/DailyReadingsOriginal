@@ -14,7 +14,9 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -27,6 +29,7 @@ import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -72,6 +75,8 @@ public class activity_date extends AppCompatActivity {
     public static Integer selectedMonth;
     public static Integer selectedDay;
 
+    BottomNavigationView navigation;
+
     TextView dateTextView;
     TextView firstReadingTextView;
     TextView secondReadingTextView;
@@ -84,6 +89,8 @@ public class activity_date extends AppCompatActivity {
     ConstraintLayout menuBackgroundConstraint;
     SwipeRefreshLayout commentsSwipeRefresh;
     LinearLayout readingsLayout;
+
+    FragmentManager fragmentManager;
 
     ArrayList<String> nearbyReadingDates = new ArrayList<>();
     Boolean listViewActive = false;
@@ -115,7 +122,6 @@ public class activity_date extends AppCompatActivity {
     public static ArrayList<ArrayList<HashMap<String, String>>> commentList;
     ViewPager commentsViewPager;
     FragmentPagerAdapter adapterViewPager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +165,10 @@ public class activity_date extends AppCompatActivity {
         commentsSwipeRefresh = findViewById(R.id.commentsSwipeRefresh);
         commentsConnectErrorText = findViewById(R.id.commentsConnectErrorText);
         getCommentsProgressBar = findViewById(R.id.getCommentsProgressBar);
+        navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        fragmentManager = getSupportFragmentManager();
 
         time[1] = System.currentTimeMillis();
         Log.i("Startup Time", "Views declared in " + Long.toString(((time[1] - time[0]))) + " ms");
@@ -263,7 +272,7 @@ public class activity_date extends AppCompatActivity {
 
     public void goToBibleReadings(View view) {
 
-        Intent myIntent = new Intent(this, activity_bible.class);
+        Intent myIntent = new Intent(this, activity_readings.class);
         myIntent.putExtra("readingNum", Integer.parseInt((view.getTag()).toString()));
         startActivity(myIntent);
         overridePendingTransition(R.anim.slidein_right, R.anim.slideout_left);
@@ -2161,7 +2170,7 @@ public class activity_date extends AppCompatActivity {
     public void onNewIntent(Intent newIntent) {
         super.onNewIntent(newIntent);
 
-        //Check that intent is from activity_bible
+        //Check that intent is from activity_readings
         if (newIntent.getStringExtra("fromActivity").equals("readings")) {
 
             //Update comments to match active reading
@@ -2230,5 +2239,32 @@ public class activity_date extends AppCompatActivity {
 
     }
     */
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    //go to tab
+                    return true;
+                case R.id.navigation_readings:
+                    //go to tab
+
+                    return true;
+                case R.id.navigation_comments:
+                    //go to tab
+
+                    return true;
+                case R.id.navigation_map:
+                    //go to tab
+
+                    return true;
+            }
+            return false;
+        }
+    };
 
 }

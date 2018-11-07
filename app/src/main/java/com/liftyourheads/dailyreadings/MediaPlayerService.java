@@ -290,7 +290,7 @@ public class MediaPlayerService extends MediaBrowserServiceCompat implements Med
             initMediaSessionMetadata();
 
             //try {
-            progress = new ProgressDialog(activity_bible.CONTEXT);
+            progress = new ProgressDialog(activity_readings.CONTEXT);
 
             progress.show();
             mMediaPlayer.prepareAsync();

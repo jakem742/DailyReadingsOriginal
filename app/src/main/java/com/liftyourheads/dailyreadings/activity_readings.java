@@ -1,25 +1,16 @@
 package com.liftyourheads.dailyreadings;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.os.PowerManager;
-import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.media.MediaBrowserCompat;
-import android.support.v4.media.session.MediaControllerCompat;
-import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v4.view.ViewPager;
-import android.app.ProgressDialog;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,15 +19,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static com.liftyourheads.dailyreadings.activity_date.readings;
 
 
-public class activity_bible extends AppCompatActivity {
+public class activity_readings extends AppCompatActivity {
 
     public static Context CONTEXT;
 
@@ -65,7 +51,7 @@ public class activity_bible extends AppCompatActivity {
 
         // Initialise theme
         Utils.onActivityCreateSetTheme(this);
-        setContentView(R.layout.activity_bible);
+        setContentView(R.layout.activity_readings);
 
         CONTEXT = this;
 
@@ -375,7 +361,7 @@ public class activity_bible extends AppCompatActivity {
         }
 
         public Player() {
-            progress = new ProgressDialog(activity_bible.this);
+            progress = new ProgressDialog(activity_readings.this);
         }
 
         @Override
@@ -481,10 +467,10 @@ public class activity_bible extends AppCompatActivity {
 
                 audio.putIntArray("Chapters",chapters);
 
-                mMediaControllerCompat = new MediaControllerCompat(activity_bible.this, mMediaBrowserCompat.getSessionToken());
+                mMediaControllerCompat = new MediaControllerCompat(activity_readings.this, mMediaBrowserCompat.getSessionToken());
                 mMediaControllerCompat.registerCallback(mMediaControllerCompatCallback);
-                MediaControllerCompat.setMediaController(activity_bible.this, mMediaControllerCompat);
-                MediaControllerCompat.getMediaController(activity_bible.this).getTransportControls().playFromMediaId(readings[curReadingNum].getAudioURL(0), audio);
+                MediaControllerCompat.setMediaController(activity_readings.this, mMediaControllerCompat);
+                MediaControllerCompat.getMediaController(activity_readings.this).getTransportControls().playFromMediaId(readings[curReadingNum].getAudioURL(0), audio);
 
             } catch( RemoteException e ) {
 
@@ -517,8 +503,8 @@ public class activity_bible extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if( MediaControllerCompat.getMediaController(activity_bible.this).getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING ) {
-            MediaControllerCompat.getMediaController(activity_bible.this).getTransportControls().pause();
+        if( MediaControllerCompat.getMediaController(activity_readings.this).getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING ) {
+            MediaControllerCompat.getMediaController(activity_readings.this).getTransportControls().pause();
         }
 
         mMediaBrowserCompat.disconnect();
@@ -539,11 +525,11 @@ public class activity_bible extends AppCompatActivity {
             public void onClick(View view) {
 
                 if( mCurrentState == STATE_PAUSED ) {
-                    MediaControllerCompat.getMediaController(activity_bible.this).getTransportControls().play();
+                    MediaControllerCompat.getMediaController(activity_readings.this).getTransportControls().play();
                     mCurrentState = STATE_PLAYING;
                 } else {
-                    if( MediaControllerCompat.getMediaController(activity_bible.this).getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING ) {
-                        MediaControllerCompat.getMediaController(activity_bible.this).getTransportControls().pause();
+                    if( MediaControllerCompat.getMediaController(activity_readings.this).getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING ) {
+                        MediaControllerCompat.getMediaController(activity_readings.this).getTransportControls().pause();
                     }
 
                     mCurrentState = STATE_PAUSED;

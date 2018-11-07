@@ -107,7 +107,7 @@ public class activity_bible_places extends AppCompatActivity {
 
     public void returnToMain(View view) {
 
-        Intent myIntent = new Intent(this, activity_bible.class);
+        Intent myIntent = new Intent(this, activity_readings.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         myIntent.putExtra("fromActivity","maps");
         myIntent.putExtra("activeReading", readingNum);
