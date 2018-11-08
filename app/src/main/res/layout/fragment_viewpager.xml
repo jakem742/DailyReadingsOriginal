@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/commentsConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?colorBackground"
+    android:clickable="false">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/contentSwipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/contentViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/readingsHeaderLayout" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <TextView
+        android:id="@+id/contentConnectErrorText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:padding="24dp"
+        android:text="Unable to connect to server.\nCheck your internet connection and swipe down to refresh."
+        android:textColor="?colorBodyText"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/contentSwipeRefresh"
+        app:layout_constraintEnd_toEndOf="@+id/contentSwipeRefresh"
+        app:layout_constraintLeft_toLeftOf="@+id/contentSwipeRefresh"
+        app:layout_constraintRight_toRightOf="@+id/contentSwipeRefresh"
+        app:layout_constraintStart_toStartOf="@+id/contentSwipeRefresh"
+        app:layout_constraintTop_toTopOf="@+id/contentSwipeRefresh" />
+
+    <ProgressBar
+        android:id="@+id/getContentProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:theme="@style/ProgressBarOverlay"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/contentSwipeRefresh"
+        app:layout_constraintEnd_toEndOf="@+id/contentSwipeRefresh"
+        app:layout_constraintStart_toStartOf="@+id/contentSwipeRefresh"
+        app:layout_constraintTop_toTopOf="@+id/contentSwipeRefresh" />
+
+
+</android.support.constraint.ConstraintLayout>

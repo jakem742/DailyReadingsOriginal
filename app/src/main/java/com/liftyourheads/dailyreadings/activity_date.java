@@ -162,7 +162,7 @@ public class activity_date extends AppCompatActivity {
         secondReadingTextView = findViewById(R.id.secondReadingTextView);
         thirdReadingTextView = findViewById(R.id.thirdReadingTextView);
         commentsViewPager = findViewById(R.id.commentsViewPager);
-        commentsSwipeRefresh = findViewById(R.id.commentsSwipeRefresh);
+        commentsSwipeRefresh = findViewById(R.id.contentSwipeRefresh);
         commentsConnectErrorText = findViewById(R.id.commentsConnectErrorText);
         getCommentsProgressBar = findViewById(R.id.getCommentsProgressBar);
         navigation = findViewById(R.id.navigation);
@@ -1219,10 +1219,10 @@ public class activity_date extends AppCompatActivity {
 
 
 
-    public static class MyPagerAdapter extends FragmentPagerAdapter {
+    public static class CommentsPagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 3;
 
-        public MyPagerAdapter(FragmentManager fragmentManager) {
+        public CommentsPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
         }
 
@@ -1784,7 +1784,7 @@ public class activity_date extends AppCompatActivity {
         }
 
         //Initialise the viewpager
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+        adapterViewPager = new CommentsPagerAdapter(getSupportFragmentManager());
         commentsViewPager.setAdapter(adapterViewPager);
 
         commentsViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -2253,13 +2253,32 @@ public class activity_date extends AppCompatActivity {
                 case R.id.navigation_readings:
                     //go to tab
 
+                    fragment_viewpager readingsFragment = fragment_viewpager.newInstance("Readings");
+
+                    //Change fragments
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.fragmentContent, readingsFragment).commit();
+
                     return true;
                 case R.id.navigation_comments:
                     //go to tab
 
+
+                    fragment_viewpager commentsFragment = fragment_viewpager.newInstance("Comments");
+
+                    //Change fragments
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.fragmentContent, commentsFragment).commit();
+
                     return true;
                 case R.id.navigation_map:
                     //go to tab
+
+                    fragment_viewpager mapsFragment = fragment_viewpager.newInstance("Maps");
+
+                    //Change fragments
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.fragmentContent, mapsFragment).commit();
 
                     return true;
             }
